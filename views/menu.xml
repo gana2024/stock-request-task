@@ -1,0 +1,21 @@
+<odoo>
+    <menuitem id="menu_stock_request_root"
+              name="Stock Requests"
+              parent="stock.menu_stock_root"
+              sequence="10"/>
+
+<menuitem id="menu_all_requests"
+          name="All Requests"
+          parent="menu_stock_request_root"
+          action="action_all_stock_requests"
+          groups="stock_request_task.group_stock_request_manager"/>
+
+
+<menuitem id="menu_my_requests"
+          name="My Requests"
+          parent="menu_stock_request_root"
+          action="action_my_stock_requests"
+          groups="stock_request_task.group_stock_request_intern"/>
+
+
+</odoo>

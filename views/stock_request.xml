@@ -1,0 +1,104 @@
+<odoo>
+<!--              *********  form   *********                 -->
+    <record id="view_stock_request_form"
+            model="ir.ui.view">
+        <field name="name">stock.form</field>
+        <field name="model">intern.stock.request</field>
+        <field name="arch" type="xml">
+            <form string="All Requests ">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,approved,rejected"/>
+
+                    <button name="action_approve" string="Approve" type="object"
+                            class="btn-primary"
+                            groups="stock_request_task.group_stock_request_manager"
+                            modifiers="draft"/>
+
+                    <button name="action_reject" string="Reject" type="object" class="btn-danger"
+                            groups="stock_request_task.group_stock_request_manager"
+                            modifiers="draft"/>
+
+                    <button name="action_draft" string="Set to Draft" type="object"
+                            groups="stock_request_task.group_stock_request_manager"
+                            modifiers="approved,rejected"/>
+
+
+                    <button name="action_done" string="Mark as Done" type="object"
+                            class="btn-success"
+                            groups="stock_request_task.group_stock_request_manager"
+                            modifiers="{'invisible': [('state', '!=', 'approved')]}"/>
+
+
+                </header>
+
+                <sheet>
+                        <group>
+                            <field name="name" />
+                            <field name="requested_by" />
+                            <field name="date_requested" />
+                            <field name="product_id" />
+                            <field name="product_uom_qty" />
+                            <field name="picking_id" readonly="1" string="Related Picking"/>
+                            <field name="note" />
+                            <field name="available_qty" readonly="1"/>
+                        </group>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+
+
+
+
+
+
+<!--              *********  tree   *********                 -->
+    <record id="view_stock_request_tree"
+            model="ir.ui.view">
+        <field name="name">stock.tree</field>
+        <field name="model">intern.stock.request</field>
+        <field name="arch" type="xml">
+            <tree string=" All Requests">
+                <field name="name"/>
+                <field name="requested_by"/>
+                <field name="date_requested"/>
+                <field name="product_id"/>
+                <field name="product_uom_qty"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+
+
+
+
+
+
+
+<!--              *********  action   *********                 -->
+
+<record id="action_all_stock_requests"
+        model="ir.actions.act_window">
+    <field name="name">All Requests</field>
+    <field name="res_model">intern.stock.request</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+
+
+
+<record id="action_my_stock_requests"
+        model="ir.actions.act_window">
+    <field name="name">My Requests</field>
+    <field name="res_model">intern.stock.request</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('requested_by', '=', uid)]</field>
+</record>
+
+
+
+
+</odoo>

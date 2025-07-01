@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_intern_stock_request_intern,access.intern.stock.request.intern,model_intern_stock_request,stock_request_task.group_stock_request_intern,1,1,1,0
+access_intern_stock_request_manager,access.intern.stock.request.manager,model_intern_stock_request,stock_request_task.group_stock_request_manager,1,1,1,1
